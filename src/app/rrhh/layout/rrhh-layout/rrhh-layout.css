@@ -7,7 +7,7 @@
   display: flex;
   min-height: 100vh;
   color: #101828;
-  background: #fff;
+  background: #f2f3f5;
 }
 
 .rrhh-layout__sidebar {
@@ -24,13 +24,19 @@
   flex-direction: column;
   min-width: 0;
   min-height: 100vh;
-  background: #fff;
+  background: #f2f3f5;
 }
 
 .rrhh-layout__content {
   flex: 1;
   min-width: 0;
-  padding: 32px;
+  min-height: calc(100vh - 36px);
+  margin: 16px 20px 20px 8px;
+  padding: 28px;
+  background: #fff;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgb(16 24 40 / 3%);
 }
 
 .rrhh-layout__mobile-header,
@@ -85,20 +91,17 @@
   }
 
   .rrhh-layout__menu-toggle:focus-visible {
-    outline: 3px solid rgb(23 107 91 / 30%);
+    outline: 3px solid rgb(63 111 196 / 30%);
     outline-offset: 2px;
   }
 
-  .rrhh-layout__menu-toggle svg {
-    width: 19px;
-    height: 19px;
-    stroke: currentColor;
-    stroke-linecap: round;
-    stroke-width: 1.8;
+  .rrhh-layout__menu-toggle i {
+    color: currentColor;
+    font-size: 19px;
   }
 
   .rrhh-layout__mobile-title {
-    color: #176b5b;
+    color: #3f6fc4;
     font-size: 14px;
     font-weight: 750;
     letter-spacing: 0.04em;
@@ -111,7 +114,10 @@
   }
 
   .rrhh-layout__content {
+    min-height: calc(100dvh - 82px);
+    margin: 12px;
     padding: 20px 16px;
+    border-radius: 10px;
   }
 
   .rrhh-layout__backdrop {

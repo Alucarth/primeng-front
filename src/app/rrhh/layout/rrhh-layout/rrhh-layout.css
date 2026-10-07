@@ -1,0 +1,142 @@
+:host {
+  display: block;
+  min-height: 100vh;
+}
+
+.rrhh-layout {
+  display: flex;
+  min-height: 100vh;
+  color: #101828;
+  background: #fff;
+}
+
+.rrhh-layout__sidebar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  align-self: flex-start;
+  height: 100vh;
+}
+
+.rrhh-layout__main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.rrhh-layout__content {
+  flex: 1;
+  min-width: 0;
+  padding: 32px;
+}
+
+.rrhh-layout__mobile-header,
+.rrhh-layout__backdrop {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .rrhh-layout__sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 5;
+    width: min(290px, calc(100vw - 52px));
+    height: 100dvh;
+    transform: translateX(-105%);
+    transition: transform 200ms ease;
+  }
+
+  .rrhh-layout--menu-open .rrhh-layout__sidebar {
+    transform: translateX(0);
+  }
+
+  .rrhh-layout__main {
+    width: 100%;
+  }
+
+  .rrhh-layout__mobile-header {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 58px;
+    padding: 0 17px;
+    background: rgb(255 255 255 / 94%);
+    border-bottom: 1px solid #eaecf0;
+    backdrop-filter: blur(10px);
+  }
+
+  .rrhh-layout__menu-toggle {
+    display: grid;
+    width: 36px;
+    height: 36px;
+    padding: 8px;
+    place-items: center;
+    color: #344054;
+    background: #f7f8fa;
+    border: 1px solid #eaecf0;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .rrhh-layout__menu-toggle:focus-visible {
+    outline: 3px solid rgb(23 107 91 / 30%);
+    outline-offset: 2px;
+  }
+
+  .rrhh-layout__menu-toggle svg {
+    width: 19px;
+    height: 19px;
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-width: 1.8;
+  }
+
+  .rrhh-layout__mobile-title {
+    color: #176b5b;
+    font-size: 14px;
+    font-weight: 750;
+    letter-spacing: 0.04em;
+  }
+
+  .rrhh-layout__mobile-title span {
+    color: #667085;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  .rrhh-layout__content {
+    padding: 20px 16px;
+  }
+
+  .rrhh-layout__backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 4;
+    display: block;
+    visibility: hidden;
+    background: rgb(16 24 40 / 42%);
+    border: 0;
+    opacity: 0;
+    transition:
+      opacity 200ms ease,
+      visibility 200ms ease;
+  }
+
+  .rrhh-layout--menu-open .rrhh-layout__backdrop {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rrhh-layout__sidebar,
+  .rrhh-layout__backdrop {
+    transition: none;
+  }
+}

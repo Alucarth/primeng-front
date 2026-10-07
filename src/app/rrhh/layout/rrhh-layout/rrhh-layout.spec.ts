@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { RrhhLayout } from './rrhh-layout';
 
 describe('RrhhLayout', () => {
@@ -8,6 +9,7 @@ describe('RrhhLayout', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [RrhhLayout],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RrhhLayout);
@@ -17,5 +19,13 @@ describe('RrhhLayout', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('opens and closes the mobile navigation', () => {
+    component.toggleMobileMenu();
+    expect(component.isMobileMenuOpen()).toBe(true);
+
+    component.closeMobileMenu();
+    expect(component.isMobileMenuOpen()).toBe(false);
   });
 });

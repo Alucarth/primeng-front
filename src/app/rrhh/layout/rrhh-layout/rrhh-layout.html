@@ -1,1 +1,34 @@
-<router-outlet></router-outlet>
+<div class="rrhh-layout" [class.rrhh-layout--menu-open]="isMobileMenuOpen()">
+  <button
+    class="rrhh-layout__backdrop"
+    type="button"
+    aria-label="Cerrar menú"
+    tabindex="-1"
+    (click)="closeMobileMenu()"
+  ></button>
+
+  <div class="rrhh-layout__sidebar">
+    <app-sidebar (closeRequested)="closeMobileMenu()" />
+  </div>
+
+  <div class="rrhh-layout__main">
+    <header class="rrhh-layout__mobile-header">
+      <button
+        class="rrhh-layout__menu-toggle"
+        type="button"
+        [attr.aria-label]="isMobileMenuOpen() ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'"
+        [attr.aria-expanded]="isMobileMenuOpen()"
+        (click)="toggleMobileMenu()"
+      >
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <span class="rrhh-layout__mobile-title">Vira <span>· RRHH</span></span>
+    </header>
+
+    <main class="rrhh-layout__content" id="contenido-principal">
+      <router-outlet />
+    </main>
+  </div>
+</div>

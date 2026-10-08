@@ -1,4 +1,4 @@
-<aside class="sidebar" aria-label="Navegación de Vira Recursos Humanos">
+<aside class="sidebar" [class.sidebar--collapsed]="collapsed()" aria-label="Navegación de Vira Recursos Humanos">
   <div class="sidebar__brand">
     <a class="sidebar__brand-link" routerLink="/" aria-label="Vira Recursos Humanos, inicio" (click)="closeRequested.emit()">
       <span class="sidebar__brand-mark" aria-hidden="true">V</span>
@@ -7,6 +7,20 @@
         <span class="sidebar__brand-caption">Recursos humanos</span>
       </span>
     </a>
+    <button
+      class="sidebar__collapse"
+      type="button"
+      [attr.aria-label]="collapsed() ? 'Expandir menú lateral' : 'Contraer menú lateral'"
+      [attr.title]="collapsed() ? 'Expandir menú' : 'Contraer menú'"
+      (click)="toggleCollapsed()"
+    >
+      <i
+        class="ki-filled"
+        [class.ki-arrow-left]="!collapsed()"
+        [class.ki-arrow-right]="collapsed()"
+        aria-hidden="true"
+      ></i>
+    </button>
     <button
       class="sidebar__close"
       type="button"
@@ -33,23 +47,66 @@
     <p class="sidebar__section-label">Espacio de trabajo</p>
     <ul class="sidebar__menu">
       @for (item of filteredNavItems(); track item.label) {
-        <li>
-          <a
-            class="sidebar__link"
-            [routerLink]="item.route"
-            routerLinkActive="sidebar__link--active"
-            [routerLinkActiveOptions]="{ exact: item.exact }"
-            ariaCurrentWhenActive="page"
-            (click)="closeRequested.emit()"
+        @if (item.type === 'link') {
+          <li>
+            <a
+              class="sidebar__link"
+              [routerLink]="item.route"
+              routerLinkActive="sidebar__link--active"
+              [routerLinkActiveOptions]="{ exact: item.exact }"
+              ariaCurrentWhenActive="page"
+              [attr.title]="collapsed() ? item.label : null"
+              (click)="closeRequested.emit()"
+            >
+              @if (item.icon === 'home') {
+                <i class="ki-filled ki-home-3 sidebar__icon" aria-hidden="true"></i>
+              } @else {
+                <i class="ki-filled ki-users sidebar__icon" aria-hidden="true"></i>
+              }
+              <span class="sidebar__link-label">{{ item.label }}</span>
+            </a>
+          </li>
+        } @else {
+          <li
+            class="sidebar__group"
+            routerLinkActive="sidebar__group--route-active"
+            [routerLinkActiveOptions]="{ exact: false }"
+            (isActiveChange)="onParametricsRouteActive($event)"
+            [class.sidebar__parametrics--open]="isParametricsOpen()"
+            (mouseenter)="onParametricsHover(true)"
+            (mouseleave)="onParametricsHover(false)"
           >
-            @if (item.icon === 'home') {
-              <i class="ki-filled ki-home-3 sidebar__icon" aria-hidden="true"></i>
-            } @else {
-              <i class="ki-filled ki-users sidebar__icon" aria-hidden="true"></i>
-            }
-            <span>{{ item.label }}</span>
-          </a>
-        </li>
+            <button
+              class="sidebar__link sidebar__group-toggle"
+              type="button"
+              [attr.aria-expanded]="isParametricsOpen()"
+              aria-controls="sidebar-parametrics-menu"
+              [attr.title]="collapsed() ? item.label : null"
+              (click)="toggleParametrics()"
+            >
+              <i class="ki-filled ki-setting-2 sidebar__icon" aria-hidden="true"></i>
+              <span class="sidebar__link-label">{{ item.label }}</span>
+              <i class="ki-filled ki-down sidebar__chevron" aria-hidden="true"></i>
+            </button>
+            <ul class="sidebar__submenu" id="sidebar-parametrics-menu">
+              @for (child of item.children; track child.label) {
+                <li>
+                  <a
+                    class="sidebar__submenu-link"
+                    [routerLink]="child.route"
+                    routerLinkActive="sidebar__submenu-link--active"
+                    [routerLinkActiveOptions]="{ exact: child.exact }"
+                    ariaCurrentWhenActive="page"
+                    (click)="closeRequested.emit(); closeParametrics()"
+                  >
+                    <span class="sidebar__submenu-marker" aria-hidden="true"></span>
+                    <span>{{ child.label }}</span>
+                  </a>
+                </li>
+              }
+            </ul>
+          </li>
+        }
       } @empty {
         <li class="sidebar__empty">No se encontraron secciones</li>
       }

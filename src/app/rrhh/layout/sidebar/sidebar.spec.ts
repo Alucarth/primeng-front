@@ -31,4 +31,29 @@ describe('Sidebar', () => {
     expect(links).toHaveLength(1);
     expect(links[0].textContent).toContain('Empleados');
   });
+
+  it('opens the parametric menu', () => {
+    component.toggleParametrics();
+
+    expect(component.isParametricsOpen()).toBe(true);
+  });
+
+  it('filters the parametric submenu by child label', () => {
+    const search = fixture.nativeElement.querySelector('input[type="search"]') as HTMLInputElement;
+    search.value = 'estado';
+    search.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+
+    expect(component.filteredNavItems()).toHaveLength(1);
+    expect(component.filteredNavItems()[0].label).toBe('Paramétricas');
+  });
+
+  it('emits the next collapsed state', () => {
+    let collapsed = false;
+    component.collapsedChange.subscribe((value) => (collapsed = value));
+
+    component.toggleCollapsed();
+
+    expect(collapsed).toBe(true);
+  });
 });

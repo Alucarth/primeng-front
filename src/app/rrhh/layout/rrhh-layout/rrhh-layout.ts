@@ -10,6 +10,8 @@ import { Sidebar } from '../sidebar/sidebar';
 })
 export class RrhhLayout {
   readonly isMobileMenuOpen = signal(false);
+  /** Desktop compact mode is independent from the mobile drawer state. */
+  readonly isSidebarCollapsed = signal(false);
 
   toggleMobileMenu(): void {
     this.isMobileMenuOpen.update((isOpen) => !isOpen);
@@ -17,5 +19,9 @@ export class RrhhLayout {
 
   closeMobileMenu(): void {
     this.isMobileMenuOpen.set(false);
+  }
+
+  setSidebarCollapsed(isCollapsed: boolean): void {
+    this.isSidebarCollapsed.set(isCollapsed);
   }
 }

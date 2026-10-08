@@ -1,4 +1,8 @@
-<div class="rrhh-layout" [class.rrhh-layout--menu-open]="isMobileMenuOpen()">
+<div
+  class="rrhh-layout"
+  [class.rrhh-layout--menu-open]="isMobileMenuOpen()"
+  [class.rrhh-layout--sidebar-collapsed]="isSidebarCollapsed()"
+>
   <button
     class="rrhh-layout__backdrop"
     type="button"
@@ -8,7 +12,11 @@
   ></button>
 
   <div class="rrhh-layout__sidebar">
-    <app-sidebar (closeRequested)="closeMobileMenu()" />
+    <app-sidebar
+      [collapsed]="isSidebarCollapsed()"
+      (collapsedChange)="setSidebarCollapsed($event)"
+      (closeRequested)="closeMobileMenu()"
+    />
   </div>
 
   <div class="rrhh-layout__main">

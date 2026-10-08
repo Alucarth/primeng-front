@@ -8,7 +8,7 @@
   min-height: 100vh;
   color: #101828;
   background:
-    linear-gradient(115deg, rgb(25 31 36 / 78%), rgb(36 43 51 / 76%)),
+    linear-gradient(115deg, rgb(0 0 0 / 20%), rgb(12 12 12 / 25%)),
     url('/background.png') center / cover fixed;
 }
 

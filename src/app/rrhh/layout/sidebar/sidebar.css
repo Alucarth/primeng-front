@@ -13,14 +13,14 @@
   min-height: 0;
   overflow: visible;
   padding: 24px 14px;
-  color: #c8cee0;
-  background: rgb(17 25 47 / 66%);
+  color: #c3cad3;
+  background: rgb(25 30 35 / 66%);
   border: 1px solid rgb(255 255 255 / 13%);
   border-radius: 24px;
   box-shadow: 0 24px 70px rgb(2 6 18 / 32%);
   -webkit-backdrop-filter: blur(24px) saturate(145%);
   backdrop-filter: blur(24px) saturate(145%);
-  font-family: Inter, "Segoe UI", Roboto, sans-serif;
+  font-family: Inter, 'Segoe UI', Roboto, sans-serif;
   transition:
     background 180ms ease,
     border-color 180ms ease;
@@ -74,7 +74,7 @@
 
 .sidebar__brand-caption {
   margin-top: 3px;
-  color: #9da8c4;
+  color: #89919a;
   font-size: 11px;
   line-height: 1.25;
 }
@@ -87,7 +87,7 @@
   flex: 0 0 auto;
   padding: 0;
   place-items: center;
-  color: #c8cee0;
+  color: #aeb6c0;
   background: transparent;
   border: 0;
   border-radius: 8px;
@@ -97,7 +97,7 @@
 .sidebar__collapse:hover,
 .sidebar__close:hover {
   color: #fff;
-  background: rgb(255 255 255 / 9%);
+  background: rgb(52 59 67 / 70%);
 }
 
 .sidebar__collapse i,
@@ -137,7 +137,7 @@
 }
 
 .sidebar__search input::placeholder {
-  color: #9da8c4;
+  color: #89919a;
 }
 
 .sidebar__search:focus-within {
@@ -151,7 +151,7 @@
 
 .sidebar__section-label {
   margin: 0 12px 10px;
-  color: #9da8c4;
+  color: #747e89;
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.09em;
@@ -179,7 +179,7 @@
   width: 100%;
   min-height: 50px;
   padding: 0 15px;
-  color: #c8cee0;
+  color: #aeb6c0;
   background: transparent;
   border: 1px solid transparent;
   border-radius: 14px;
@@ -198,8 +198,8 @@
 .sidebar__link:hover,
 .sidebar__group--route-active > .sidebar__group-toggle {
   color: #fff;
-  background: rgb(255 255 255 / 9%);
-  border-color: rgb(255 255 255 / 8%);
+  background: rgb(52 59 67 / 70%);
+  border-color: rgb(64 72 82 / 80%);
 }
 
 .sidebar__link:focus-visible,
@@ -212,9 +212,9 @@
 }
 
 .sidebar__link--active {
-  color: #f4f5ff;
-  background: rgb(139 156 255 / 17%);
-  border-color: rgb(170 182 255 / 20%);
+  color: #f1f4f8;
+  background: rgb(44 51 59 / 88%);
+  border-color: rgb(64 72 82 / 90%);
   font-weight: 650;
 }
 
@@ -239,7 +239,7 @@
 .sidebar__icon {
   width: 19px;
   flex: 0 0 auto;
-  color: #aebaff;
+  color: #939da8;
   font-size: 19px;
   text-align: center;
 }
@@ -247,7 +247,7 @@
 .sidebar__link:hover .sidebar__icon,
 .sidebar__link--active .sidebar__icon,
 .sidebar__group--route-active .sidebar__icon {
-  color: #dfe4ff;
+  color: #d9e5f8;
 }
 
 .sidebar__link-label {
@@ -286,7 +286,7 @@
   gap: 10px;
   min-height: 37px;
   padding: 0 11px;
-  color: #b9c1d6;
+  color: #9099a4;
   border-radius: 7px;
   font-size: 12px;
   text-decoration: none;
@@ -297,19 +297,19 @@
 
 .sidebar__submenu-link:hover {
   color: #fff;
-  background: rgb(255 255 255 / 7%);
+  background: rgb(43 50 58 / 80%);
 }
 
 .sidebar__submenu-link--active {
-  color: #f4f5ff;
-  background: rgb(139 156 255 / 17%);
+  color: #eaf1ff;
+  background: rgb(48 59 74 / 90%);
 }
 
 .sidebar__submenu-marker {
   width: 5px;
   height: 5px;
   flex: 0 0 auto;
-  background: #9da9d3;
+  background: #727d89;
   border-radius: 50%;
 }
 
@@ -343,9 +343,9 @@
   height: 34px;
   flex: 0 0 auto;
   place-items: center;
-  color: #e4e8f5;
-  background: rgb(139 156 255 / 17%);
-  border: 1px solid rgb(196 205 255 / 42%);
+  color: #dce8fa;
+  background: rgb(52 63 77 / 88%);
+  border: 1px solid rgb(74 86 101 / 90%);
   border-radius: 50%;
   font-size: 10px;
   font-weight: 700;
@@ -358,7 +358,7 @@
 
 .sidebar__profile-name {
   overflow: hidden;
-  color: #e4e8f5;
+  color: #e1e5e9;
   font-size: 11px;
   font-weight: 650;
   text-overflow: ellipsis;
@@ -367,7 +367,7 @@
 
 .sidebar__profile-role {
   overflow: hidden;
-  color: #9da8c4;
+  color: #8c959f;
   font-size: 10px;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -407,7 +407,7 @@
 
   .sidebar--collapsed .sidebar__link {
     justify-content: center;
-    padding: 0;
+    padding: 14px;
   }
 
   .sidebar--collapsed .sidebar__group-toggle {
@@ -423,8 +423,8 @@
     width: 190px;
     margin: 0;
     padding: 9px;
-    background: rgb(17 25 47 / 94%);
-    border: 1px solid rgb(255 255 255 / 13%);
+    background: rgb(25 30 35 / 94%);
+    border: 1px solid rgb(58 66 76 / 90%);
     border-radius: 12px;
     box-shadow: 0 12px 30px rgb(2 6 18 / 45%);
     -webkit-backdrop-filter: blur(24px) saturate(145%);

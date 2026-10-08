@@ -11,7 +11,10 @@
       class="sidebar__collapse"
       type="button"
       [attr.aria-label]="collapsed() ? 'Expandir menú lateral' : 'Contraer menú lateral'"
-      [attr.title]="collapsed() ? 'Expandir menú' : 'Contraer menú'"
+      [pTooltip]="collapsed() ? 'Expandir menú' : 'Contraer menú'"
+      [tooltipStyleClass]="'sidebar-tooltip'"
+      [tooltipPosition]="'right'"
+      [showDelay]="250"
       (click)="toggleCollapsed()"
     >
       <i
@@ -55,7 +58,11 @@
               routerLinkActive="sidebar__link--active"
               [routerLinkActiveOptions]="{ exact: item.exact }"
               ariaCurrentWhenActive="page"
-              [attr.title]="collapsed() ? item.label : null"
+              [pTooltip]="item.label"
+              [tooltipStyleClass]="'sidebar-tooltip'"
+              [tooltipDisabled]="!collapsed()"
+              [tooltipPosition]="'right'"
+              [showDelay]="250"
               (click)="closeRequested.emit()"
             >
               @if (item.icon === 'home') {
@@ -81,7 +88,11 @@
               type="button"
               [attr.aria-expanded]="isParametricsOpen()"
               aria-controls="sidebar-parametrics-menu"
-              [attr.title]="collapsed() ? item.label : null"
+              [pTooltip]="item.label"
+              [tooltipStyleClass]="'sidebar-tooltip'"
+              [tooltipDisabled]="!collapsed()"
+              [tooltipPosition]="'right'"
+              [showDelay]="250"
               (click)="toggleParametrics()"
             >
               <i class="ki-duotone ki-setting-2 sidebar__icon" aria-hidden="true"></i>

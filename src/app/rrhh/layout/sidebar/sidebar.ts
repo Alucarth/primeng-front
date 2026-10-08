@@ -1,5 +1,6 @@
 import { Component, computed, input, output, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Tooltip } from 'primeng/tooltip';
 
 type SidebarLink = {
   type: 'link';
@@ -26,7 +27,7 @@ type SidebarEntry = SidebarLink | SidebarGroup;
 
 /** Navigation for the RRHH layout, including searchable nested sections. */
 @Component({
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, Tooltip],
   selector: 'app-sidebar',
   styleUrl: './sidebar.css',
   templateUrl: './sidebar.html',

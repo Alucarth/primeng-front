@@ -1,3 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+.p-tooltip.sidebar-tooltip .p-tooltip-text {
+  color: #f1f4f8;
+  background: rgb(0 0 0 / 78%);
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 9px;
+  box-shadow: 0 12px 30px rgb(2 6 18 / 45%);
+  -webkit-backdrop-filter: blur(18px) saturate(145%);
+  backdrop-filter: blur(18px) saturate(145%);
+}
+
+.p-tooltip.sidebar-tooltip.p-tooltip-right .p-tooltip-arrow {
+  border-right-color: rgb(0 0 0 / 78%);
+}
+
+.p-tooltip.sidebar-tooltip.p-tooltip-left .p-tooltip-arrow {
+  border-left-color: rgb(0 0 0 / 78%);
+}
+
+.p-tooltip.sidebar-tooltip.p-tooltip-top .p-tooltip-arrow {
+  border-top-color: rgb(0 0 0 / 78%);
+}
+
+.p-tooltip.sidebar-tooltip.p-tooltip-bottom .p-tooltip-arrow {
+  border-bottom-color: rgb(0 0 0 / 78%);
+}

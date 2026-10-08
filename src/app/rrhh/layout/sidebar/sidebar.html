@@ -15,7 +15,7 @@
       (click)="toggleCollapsed()"
     >
       <i
-        class="ki-filled"
+        class="ki-duotone"
         [class.ki-arrow-left]="!collapsed()"
         [class.ki-arrow-right]="collapsed()"
         aria-hidden="true"
@@ -27,12 +27,12 @@
       aria-label="Cerrar menú"
       (click)="closeRequested.emit()"
     >
-      <i class="ki-filled ki-cross" aria-hidden="true"></i>
+      <i class="ki-duotone ki-cross" aria-hidden="true"></i>
     </button>
   </div>
 
   <label class="sidebar__search">
-    <i class="ki-filled ki-magnifier" aria-hidden="true"></i>
+    <i class="ki-duotone ki-magnifier" aria-hidden="true"></i>
     <span class="sidebar__sr-only">Buscar en el menú</span>
     <input
       type="search"
@@ -59,9 +59,9 @@
               (click)="closeRequested.emit()"
             >
               @if (item.icon === 'home') {
-                <i class="ki-filled ki-home-3 sidebar__icon" aria-hidden="true"></i>
+                <i class="ki-duotone ki-home-3 sidebar__icon" aria-hidden="true"></i>
               } @else {
-                <i class="ki-filled ki-users sidebar__icon" aria-hidden="true"></i>
+                <i class="ki-duotone ki-users sidebar__icon" aria-hidden="true"></i>
               }
               <span class="sidebar__link-label">{{ item.label }}</span>
             </a>
@@ -84,9 +84,9 @@
               [attr.title]="collapsed() ? item.label : null"
               (click)="toggleParametrics()"
             >
-              <i class="ki-filled ki-setting-2 sidebar__icon" aria-hidden="true"></i>
+              <i class="ki-duotone ki-setting-2 sidebar__icon" aria-hidden="true"></i>
               <span class="sidebar__link-label">{{ item.label }}</span>
-              <i class="ki-filled ki-down sidebar__chevron" aria-hidden="true"></i>
+              <i class="ki-duotone ki-down sidebar__chevron" aria-hidden="true"></i>
             </button>
             <ul class="sidebar__submenu" id="sidebar-parametrics-menu">
               @for (child of item.children; track child.label) {

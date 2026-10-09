@@ -1,0 +1,39 @@
+<p-dialog
+  [header]="fileName() || 'Vista previa del documento'"
+  [modal]="true"
+  [(visible)]="isOpen"
+  [style]="{ width: '80vw', height: '85vh' }"
+  [breakpoints]="{ '640px': '95vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  [closable]="true"
+  styleClass="pdf-preview-dialog"
+>
+  <div class="pdf-container">
+    @if (pdfUrl(); as url) {
+      <iframe
+        [src]="url"
+        class="pdf-iframe"
+        frameborder="0"
+      ></iframe>
+    } @else {
+      <div class="pdf-loading">
+        <i class="pi pi-spin pi-spinner text-4xl text-gray-400"></i>
+        <p class="text-sm text-gray-500 mt-3">Cargando documento...</p>
+      </div>
+    }
+  </div>
+
+  @if (downloadable()) {
+    <ng-template #footer>
+      <p-button
+        label="Descargar"
+        icon="pi pi-download"
+        severity="success"
+        [outlined]="true"
+        [disabled]="!file()"
+        (onClick)="download()"
+      />
+    </ng-template>
+  }
+</p-dialog>

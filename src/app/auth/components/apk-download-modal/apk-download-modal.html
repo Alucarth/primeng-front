@@ -1,0 +1,147 @@
+<p-dialog
+  [modal]="true"
+  [(visible)]="visible"
+  [style]="{ width: '28rem' }"
+  [breakpoints]="{ '640px': '95vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  [closable]="false"
+  [showHeader]="true"
+>
+  <ng-template #header>
+    <div class="flex items-center gap-3">
+      <div
+        class="rounded-xl p-3 flex justify-center items-center"
+        [class.bg-orange-50]="status() !== 'ready'"
+      >
+        <i
+          class="pi pi-android text-xl"
+          [class.text-orange-500]="status() !== 'ready'"
+          [class.text-green-500]="status() === 'ready'"
+        ></i>
+      </div>
+      <div>
+        <span class="font-semibold">Descargar svApp</span>
+        <p class="text-xs text-gray-500 mt-0.5">
+          @switch (status()) {
+            @case ('downloading') {
+              <span>Descargando archivo APK, por favor espera...</span>
+            }
+            @case ('ready') {
+              <span>Descarga completada</span>
+            }
+            @case ('error') {
+              <span>Ocurrió un error en la descarga</span>
+            }
+          }
+        </p>
+      </div>
+    </div>
+  </ng-template>
+
+  <div class="flex flex-col gap-3 py-1">
+    @if (blocked()) {
+      <div class="flex flex-col items-center gap-2 text-center py-4">
+        <i class="pi pi-exclamation-triangle text-3xl text-red-400"></i>
+        <p class="text-sm font-medium text-gray-700">Dispositivo no compatible</p>
+        <p class="text-xs text-gray-600 leading-relaxed">{{ blocked() }}</p>
+      </div>
+    } @else if (status() === 'error') {
+      <div class="flex flex-col items-center gap-2 text-center py-4">
+        <i class="pi pi-exclamation-triangle text-3xl text-red-400"></i>
+        <p class="text-sm text-gray-600">
+          No se pudo completar la descarga del APK. Inténtalo nuevamente.
+        </p>
+      </div>
+    } @else {
+      <p-progressBar
+        [value]="progress()"
+        [showValue]="false"
+        [mode]="indeterminate() ? 'indeterminate' : 'determinate'"
+      />
+      <div class="flex items-center justify-between text-xs text-gray-500 min-h-[1rem]">
+        @if (status() === 'ready') {
+          <span class="inline-flex items-center gap-1.5 text-green-600 font-medium">
+            <i class="pi pi-check-circle"></i>
+            Archivo listo: SvApp.apk
+          </span>
+        } @else if (indeterminate()) {
+          <span>Descargando...</span>
+        } @else {
+          <span>{{ progress() }}%</span>
+        }
+
+        @if (total() > 0) {
+          <span>{{ formatFileSize(downloaded()) }} / {{ formatFileSize(total()) }}</span>
+        }
+      </div>
+
+      <div
+        class="flex items-center justify-between border-t border-gray-100 pt-3 text-xs text-gray-600"
+      >
+        <span
+          class="inline-flex items-center gap-1.5"
+          [class.text-green-600]="status() === 'ready'"
+        >
+          <i
+            class="pi"
+            [class.pi-clock]="status() !== 'ready'"
+            [class.pi-check-circle]="status() === 'ready'"
+          ></i>
+          @if (status() === 'ready') {
+            <span>Tiempo total: {{ formatDuration(elapsed()) }}</span>
+          } @else {
+            <span>Transcurrido: {{ formatDuration(elapsed()) }}</span>
+          }
+        </span>
+        <span
+          class="inline-flex items-center gap-1.5"
+          [class.text-green-600]="status() === 'ready'"
+        >
+          <i
+            class="pi"
+            [class.pi-bolt]="status() !== 'ready'"
+            [class.pi-chart-line]="status() === 'ready'"
+          ></i>
+          @if (status() === 'ready') {
+            <span>Velocidad media: {{ formatSpeed(averageSpeed()) }}</span>
+          } @else if (speed() > 0) {
+            <span>Velocidad: {{ formatSpeed(speed()) }}</span>
+          } @else {
+            <span>Calculando velocidad...</span>
+          }
+        </span>
+      </div>
+    }
+  </div>
+
+  <ng-template #footer>
+    <div class="flex justify-end gap-3 pt-2">
+      @if (blocked()) {
+        <p-button
+          label="Entendido"
+          severity="primary"
+          (click)="close()"
+          icon="pi pi-check"
+          styleClass="px-4"
+        />
+      } @else if (status() === 'downloading') {
+        <p-button
+          label="Cancelar"
+          severity="secondary"
+          (click)="close()"
+          icon="pi pi-times"
+          styleClass="px-4"
+        />
+      } @else {
+        <p-button
+          [label]="status() === 'error' ? 'Cerrar' : 'Listo'"
+          severity="primary"
+          (click)="close()"
+          icon="pi pi-check"
+          styleClass="px-4"
+        />
+      }
+    </div>
+  </ng-template>
+</p-dialog>

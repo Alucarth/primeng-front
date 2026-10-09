@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
-  baseUrl: import.meta.env['NG_APP_API_URL'],
-  title: import.meta.env['NG_APP_TITLE'],
+  baseUrl: 'http://127.0.0.1:3000/api',
+  title: 'SV',
 };

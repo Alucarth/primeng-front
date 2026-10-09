@@ -1,130 +1,104 @@
-<form [formGroup]="form" (ngSubmit)="login(usernameInput, passwordInput)">
-  <div class="limiter">
-    <div class="container-login100">
-      <div class="bg-animate" aria-hidden="true">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-        <div class="bg-particles">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+<main class="login-page">
+  <section class="login-card" aria-labelledby="login-title">
+    <header class="login-brand">
+      <span class="login-brand__mark" aria-hidden="true">V</span>
+      <span class="login-brand__copy">
+        <span class="login-brand__name">VIRA</span>
+        <span class="login-brand__caption">Recursos humanos</span>
+      </span>
+    </header>
 
-      <div class="wrap-login100">
-        <div
-          class="login100-pic"
-          appTilt
-          [tiltMax]="15"
-          [tiltSpeed]="300"
-          [tiltScale]="1.05"
-          [tiltGlare]="false"
-        >
-          <div class="logo-circle">
-            <img src="assets/images/logo.png" alt="Logo del sistema" />
-          </div>
-        </div>
-
-        <div class="login100-form">
-          <div class="flex justify-center items-center w-full">
-            <hlm-field-group class="w-full">
-              <div class="flex flex-col items-center gap-1.5 text-center">
-                <h1 class="text-2xl font-bold">Sistema de Asistencia</h1>
-                <p class="text-sm">Ingresa tus credenciales para continuar</p>
-              </div>
-
-              <hlm-field>
-                <label hlmFieldLabel for="username">Usuario</label>
-                <div class="input-icon-wrapper">
-                  <ng-icon name="lucideUser" class="input-icon" />
-                  <input
-                    hlmInput
-                    type="text"
-                    id="username"
-                    #usernameInput
-                    placeholder="Ingresa tu usuario"
-                    formControlName="username"
-                    autocomplete="username"
-                    (animationstart)="onAutofill($event, 'username')"
-                    appUppercase
-                  />
-                </div>
-                <hlm-field-error validator="required">El usuario es requerido.</hlm-field-error>
-                <hlm-field-error validator="minlength"
-                  >El usuario debe tener al menos 3 caracteres.</hlm-field-error
-                >
-              </hlm-field>
-
-              <hlm-field>
-                <div class="flex items-center">
-                  <label hlmFieldLabel for="password">Contraseña</label>
-                </div>
-                <div class="input-icon-wrapper">
-                  <ng-icon name="lucideLock" class="input-icon" />
-                  <input
-                    hlmInput
-                    [type]="showPassword() ? 'text' : 'password'"
-                    id="password"
-                    #passwordInput
-                    placeholder="Ingresa tu contraseña"
-                    formControlName="password"
-                    autocomplete="current-password"
-                    (animationstart)="onAutofill($event, 'password')"
-                  />
-                  <button
-                    type="button"
-                    class="password-toggle"
-                    (click)="togglePassword()"
-                    [attr.aria-label]="showPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
-                    [attr.title]="showPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
-                  >
-                    <ng-icon [name]="showPassword() ? 'lucideEyeOff' : 'lucideEye'" />
-                  </button>
-                </div>
-                <hlm-field-error validator="required">La contraseña es requerida.</hlm-field-error>
-                <hlm-field-error validator="minlength"
-                  >La contraseña debe tener al menos 5 caracteres.</hlm-field-error
-                >
-              </hlm-field>
-
-              <hlm-field>
-                <button
-                  hlmBtn
-                  type="submit"
-                  class="login-btn"
-                  [disabled]="form.invalid || isLoading()"
-                >
-                  @if (isLoading()) {
-                    <ng-icon name="lucideLoader2" class="animate-spin" />
-                    <span>Iniciando sesión...</span>
-                  } @else {
-                    <ng-icon name="lucideLogIn" />
-                    <span>Iniciar sesión</span>
-                  }
-                </button>
-                <div class="pt-4"></div>
-                <!-- <button class="app-download-text mt-2" type="button" (click)="downloadApk()">
-                  <ng-icon name="lucideDownload" />
-                  <span>Descargar svApp para Android</span>
-                </button> -->
-              </hlm-field>
-            </hlm-field-group>
-          </div>
-        </div>
-      </div>
+    <div class="login-heading">
+      <span class="login-heading__icon" aria-hidden="true">
+        <i class="ki-duotone ki-user" aria-hidden="true"></i>
+      </span>
+      <h1 id="login-title">Bienvenido</h1>
+      <p>Ingresa tus credenciales para continuar</p>
     </div>
-  </div>
-</form>
 
-<!-- <apk-download-modal
-  [open]="apkModalOpen()"
-  [download]="apkDownload$()"
-  [blockedReason]="apkBlockedReason()"
-  (openChange)="onApkModalClose($event)"
-/> -->
+    <form [formGroup]="form" (ngSubmit)="login(usernameInput, passwordInput)" novalidate>
+      <div class="login-field">
+        <label for="username">Usuario</label>
+        <div class="login-field__control">
+          <i class="ki-duotone ki-user login-field__icon" aria-hidden="true"></i>
+          <input
+            pInputText
+            type="text"
+            id="username"
+            #usernameInput
+            class="login-input"
+            placeholder="Ingresa tu usuario"
+            formControlName="username"
+            autocomplete="username"
+            [attr.aria-invalid]="form.controls.username.invalid && form.controls.username.touched"
+            aria-describedby="username-error"
+            (animationstart)="onAutofill($event, 'username')"
+            appUppercase
+          />
+        </div>
+        @if (form.controls.username.invalid && form.controls.username.touched) {
+          <small class="login-field__error" id="username-error" aria-live="polite">
+            @if (form.controls.username.hasError('required')) {
+              El usuario es requerido.
+            } @else if (form.controls.username.hasError('minlength')) {
+              El usuario debe tener al menos 3 caracteres.
+            }
+          </small>
+        }
+      </div>
+
+      <div class="login-field">
+        <label for="password">Contraseña</label>
+        <div class="login-field__control">
+          <i class="ki-duotone ki-lock login-field__icon" aria-hidden="true"></i>
+          <input
+            pInputText
+            [type]="showPassword() ? 'text' : 'password'"
+            id="password"
+            #passwordInput
+            class="login-input login-input--password"
+            placeholder="Ingresa tu contraseña"
+            formControlName="password"
+            autocomplete="current-password"
+            [attr.aria-invalid]="form.controls.password.invalid && form.controls.password.touched"
+            aria-describedby="password-error"
+            (animationstart)="onAutofill($event, 'password')"
+          />
+          <button
+            type="button"
+            class="password-toggle"
+            (click)="togglePassword()"
+            [attr.aria-label]="showPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+            [attr.title]="showPassword() ? 'Ocultar contraseña' : 'Mostrar contraseña'"
+          >
+            <i
+              class="ki-duotone"
+              [class.ki-eye-slash]="showPassword()"
+              [class.ki-eye]="!showPassword()"
+              aria-hidden="true"
+            ></i>
+          </button>
+        </div>
+        @if (form.controls.password.invalid && form.controls.password.touched) {
+          <small class="login-field__error" id="password-error" aria-live="polite">
+            @if (form.controls.password.hasError('required')) {
+              La contraseña es requerida.
+            } @else if (form.controls.password.hasError('minlength')) {
+              La contraseña debe tener al menos 5 caracteres.
+            }
+          </small>
+        }
+      </div>
+
+      <button pButton type="submit" class="login-submit" [disabled]="form.invalid || isLoading()">
+        @if (isLoading()) {
+          <i class="ki-duotone ki-loading login-submit__spinner" aria-hidden="true"></i>
+          <span>Iniciando sesión...</span>
+        } @else {
+          <i class="ki-duotone ki-entrance-right" aria-hidden="true"></i>
+          <span>Iniciar sesión</span>
+        }
+      </button>
+    </form>
+  </section>
+</main>

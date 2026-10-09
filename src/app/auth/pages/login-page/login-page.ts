@@ -1,21 +1,18 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-
-import { TiltDirective } from '../../../common/directives/tilt.directive';
 import { UppercaseDirective } from '../../../common/directives/uppercase.directive';
-
 import { AuthService } from '@/auth/services/auth.service';
-
 import { firstValueFrom, Observable } from 'rxjs';
-
-import { ApkDownloadModal } from '../../components/apk-download-modal/apk-download-modal';
 import { HttpEvent } from '@angular/common/http';
 import { DeviceCompatibilityService } from '../../../common/services/device-compatibility.service';
 import { AccountService } from '../../../rrhh/services/account.service';
+import { ButtonDirective } from 'primeng/button';
+import { InputText } from 'primeng/inputtext';
+
 @Component({
   selector: 'app-login-page',
-  imports: [ReactiveFormsModule, TiltDirective, UppercaseDirective, ApkDownloadModal],
+  imports: [ReactiveFormsModule, UppercaseDirective, ButtonDirective, InputText],
   templateUrl: './login-page.html',
   styleUrl: './login-page.css',
 })

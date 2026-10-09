@@ -1,7 +1,7 @@
 import { Component, effect, EventEmitter, inject, input, Output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
-import { ProgressBarModule } from 'primeng/progressbar';
+import { ProgressBar } from 'primeng/progressbar';
 import { ButtonModule } from 'primeng/button';
 import { MessageService } from 'primeng/api';
 import { HttpEvent, HttpEventType } from '@angular/common/http';
@@ -9,7 +9,7 @@ import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'apk-download-modal',
-  imports: [CommonModule, DialogModule, ProgressBarModule, ButtonModule],
+  imports: [CommonModule, DialogModule, ProgressBar, ButtonModule],
   templateUrl: './apk-download-modal.html',
   styleUrl: './apk-download-modal.css',
 })

@@ -9,10 +9,10 @@ import {
   ProfileResponse,
   Role,
   RolesResponse,
+  User,
 } from '../interfaces/auth-response.interface';
 import { environment } from '../../enviroments/environment';
 import { UploadService } from './upload.service';
-import { User } from '../../rrhh/layout/interfaces/user.interface';
 
 const baseUrl = environment.baseUrl;
 type AuthStatus = 'checking' | 'authenticated' | 'not-authenticated';
